@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IOilRecordModelDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.OilRecordModel" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="room_id" property="roomId" />
+    <result column="oil_num" property="oilNum" />
+    <result column="create_time" property="createTime" />
+    <result column="head_img" property="headImg" />
+    <result column="nick_name" property="nickName" />
+    <result column="rate" property="rate" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,room_id,oil_num,create_time,nick_name,head_img,rate
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="id !=null">
+        and id = #{id}
+      </if>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="roomId !=null">
+        and room_id = #{roomId}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryOilRecordList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.OilRecordModel" >
+    select
+    <include refid="Base_Column_List" />
+    from t_oil_record
+    <include refid="wherecause"/>
+  </select>
+
+
+  <select id="queryOilRecordRankList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.OilRecordModel" >
+    SELECT rank id,open_id,room_id,oil_num,nick_name,head_img FROM ( SELECT id,open_id,room_id,oil_num,nick_name,head_img,(@mycnt := @mycnt + 1) as rank FROM t_oil_record t
+    where room_id=#{roomId} ORDER BY oil_num*1 desc ) a, (SELECT @mycnt:=0) r where room_id=#{roomId} order by id
+  </select>
+
+  <insert id="addOilRecordModel" parameterType="org.jumutang.giftpay.entity.OilRecordModel" >
+    insert into t_oil_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      open_id,room_id,oil_num,create_time,head_img,nick_name,rate
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{openId},#{roomId},#{oilNum},now(),#{headImg},#{nickName},#{rate}
+    </trim>
+  </insert>
+
+  <update id="updateRecordModel"  parameterType="org.jumutang.giftpay.entity.OilRecordModel" >
+    update t_oil_record set oil_num=#{oilNum} where open_id=#{openId} and room_id = #{roomId}
+  </update>
+
+</mapper>

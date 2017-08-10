@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IUserRateDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.UserRateModel" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="create_time" property="createTime" />
+    <result column="status" property="status" />
+    <result column="rule_desc" property="ruleDesc" />
+    <result column="rate" property="rate" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,create_time,status,rule_desc,rate
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="status !=null">
+        and status = #{status}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryUserRateList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.UserRateModel" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_rate
+    <include refid="wherecause"/>
+  </select>
+
+
+  <insert id="addUserRateModel" parameterType="org.jumutang.giftpay.entity.UserModel" >
+    insert into t_user_rate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      open_id,create_time,status,rule_desc,rate
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{openId},now(),#{status},#{ruleDesc},#{rate}
+    </trim>
+  </insert>
+
+  <select id="queryUserAllRate" resultType="java.lang.String"  parameterType="org.jumutang.giftpay.entity.UserModel" >
+    select sum(rate*1) allrate from t_user_rate where open_id=#{openId}
+  </select>
+
+
+</mapper>

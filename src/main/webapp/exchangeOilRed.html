@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <script type="text/javascript" src="js/exchangeOilRed.js"></script>
+</head>
+<body>
+<div id="tip_" class="exchange_nav">
+    <div class="exchange_tip">
+        <img src="img/colse.png" alt="" onclick="close_ExchangeTip()">
+        <div class="title">确认兑换</div>
+        <div class="content1">
+            <div>加油红包可在中石化加油时</div>
+            <div>抵扣消费金额，确定兑换吗？</div>
+        </div>
+        <button onclick="exchangeSure()">确定</button>
+    </div>
+</div>
+<div id="bg_nav" class="bg_nav2">
+    <div class="exchange_tip2">
+        <img src="img/colse.png" class="exchange_btn_cancel" alt="" onclick="close_ExchangeTip2()">
+        <div class="title">填写信息</div>
+        <div class="content1">
+            <div>请填写以下信息领取您的加油红包</div>
+            <div>
+                <input id="tel" class="exchange_input" type="tel" placeholder="请输入手机号码" maxlength="11">
+            </div>
+            <div class="flex">
+                <div class="flex-1">
+                    <input id="code" class="exchange_input_code" type="tel" placeholder="请输入验证码" maxlength="6">
+                </div>
+                <div class="exchange_input_getCode">
+                    <label onclick="sendCode(this)">获取验证码</label>
+                    <label id="timer"  style="display: none;"></label>
+                </div>
+            </div>
+        </div>
+        <button class="exchange_btn_sure" onclick="sure()">确定</button>
+    </div>
+</div>
+<div class="zoomer ">
+    <div class="exchangeOilRed_bg">
+        <div class="exchangeOilRed_bg_nav">
+           <div class="exchange_top">
+              <div class="exchange_bigTile">中石化加油红包兑换</div>
+              <div class="exchange_smallTile"></div>
+            </div>
+            <div class="red_bg">
+                50元
+            </div>
+            <img src="img/red_advertisement.png" alt=""class="poster_tip" onclick="myRedList()">
+            <div class="exchange_number">
+                <a><img src="img/cut.png" alt="" class="img1" onclick="removeRedpkgNum()"></a>
+                <a class="exchange_number_number">
+                    x0张
+                </a>
+                <a>
+                    <img src="img/add.png" onclick="addRedpkgNum()" class="img2">
+                </a>
+            </div>
+            <div class="middle_text123">兑换价格:5000滴</div>
+            <div class="exchange_btn" onclick="toPay()">
+
+            </div>
+            <div class="exchange_line">
+            </div>
+            <div class="exchange_line_text">温馨提醒</div>
+            <div class="exchange_text_">兑换成功后，在中石化加油时，用微信扫描加油站工作人员佩戴的二维码进行线上支付，即可使用红包抵扣消费金额</div>
+            <ul class="exchange_code1">
+                <li>
+                    <img src="img/erCode.png" alt="">
+                </li>
+                <li>
+                    <div>长按二维码查询加油红包</div>
+                    <div>并随时查看最新车主优惠活动</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

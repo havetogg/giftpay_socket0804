@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IOilBalanceDao">
+    <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.OilBalanceModel">
+        <id column="id" property="id"/>
+        <result column="open_id" property="openId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="status" property="status"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="oil_balance" property="oilBalance"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id,open_id,create_time,status,update_time,oil_balance
+  </sql>
+
+    <sql id="wherecause">
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+            <if test="openId !=null">
+                and open_id = #{openId}
+            </if>
+            <if test="status !=null">
+                and status = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="queryOilBalanceList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.OilBalanceModel">
+        select
+        <include refid="Base_Column_List"/>
+        from oil_balance
+        <include refid="wherecause"/>
+        order by create_time desc
+    </select>
+
+    <insert id="addOilBalanceModel" parameterType="org.jumutang.giftpay.entity.OilBalanceModel">
+        insert into oil_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            open_id,create_time,status,update_time,oil_balance
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{openId},now(),'0',now(),#{oilBalance}
+        </trim>
+    </insert>
+    <update id="updateOilBalanceModel" parameterType="org.jumutang.giftpay.entity.OilBalanceModel">
+      update oil_balance set oil_balance=#{oilBalance},update_time=now() where open_id=#{openId}
+  </update>
+
+</mapper>

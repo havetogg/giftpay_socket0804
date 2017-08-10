@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+</head>
+<script>
+    $(function(){
+        $.ajax({
+            type: "GET",
+            url: getRootPath() + "/quertAllOilRecordList.htm",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var str="";
+                if(data.length!=0){
+                    $.each(data,function(index,item){
+                        str+='<li onclick="javascript:location.href=\'loginBase.htm?roomRecordId='+item.id+'\'"> <div class="flex-2">';
+                        str+=' <div>送你油</div>';
+                        str+=' <div class="redList_time">'+(item.createTime.substring(0,item.createTime.indexOf(".")))+'</div>';
+                        str+='<div class="flex-1 redList_right">';
+                        str+='<a>'+item.oilNum+'滴</a><img src="img/right_arrow.png" alt="">';
+                        str+='</div>';
+                        str+=' </li>';
+                    })
+                }
+                else{
+                     str= "     <div class=\"noRedRecords\">"
+                         + "                <img src='img/noRecords.png' alt=''>"
+                         + "                <div class=\"text1\">您还没有发过油滴哦</div>"
+                         + "            </div>";
+                }
+                $(".redList").html(str);
+            }
+        });
+    })
+</script>
+<body style="background-color: #f4f4f8;">
+<div class="zoomer " style="background-color: #f4f4f8 !important;">
+    <div class="redTicket">
+        <ul class="redList">
+            <div class="noRedRecords">
+                <img src='img/noRecords.png' alt=''>
+                <div class="text1">您还没有发过油滴哦</div>
+            </div>
+           <!-- <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>
+            <li>
+                <div class="flex-2">
+                    <div>送你油</div>
+                    <div class="redList_time">2017-06-22 15:21:30</div>
+                </div>
+                <div class="flex-1 redList_right">
+                    <a>100滴</a><img src="img/right_arrow.png" alt="">
+                </div>
+            </li>-->
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>

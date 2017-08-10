@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IUserModelDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.UserModel" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="head_img" property="headImg" />
+    <result column="nick_name" property="nickName" />
+    <result column="create_time" property="createTime" />
+    <result column="status" property="status" />
+    <result column="phone" property="phone" />
+    <result column="user_id" property="userId" />
+    <result column="is_init" property="isInit" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,head_img,nick_name,create_time,status,phone,user_id,is_init
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="phone !=null">
+        and phone = #{phone}
+      </if>
+      <if test="userId !=null">
+        and user_id = #{userId}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryUserModelList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.UserModel" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_model
+    <include refid="wherecause"/>
+  </select>
+
+  <update id="updateUserPhone"  parameterType="org.jumutang.giftpay.entity.UserModel" >
+    update t_user_model set  phone = #{phone} where open_id = #{openId}
+  </update>
+  <update id="updateUserID"  parameterType="org.jumutang.giftpay.entity.UserModel" >
+    update t_user_model set  user_id = #{userId} where open_id = #{openId}
+  </update>
+  <update id="updateUserInitStatus"  parameterType="org.jumutang.giftpay.entity.UserModel" >
+    update t_user_model set  is_init = #{isInit} where open_id = #{openId}
+  </update>
+
+  <insert id="addUserModel" parameterType="org.jumutang.giftpay.entity.UserModel" >
+    insert into t_user_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      open_id,head_img,nick_name,create_time,status,is_init,
+      <if test="phone !=null">
+        phone,
+      </if>
+      <if test="userId !=null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{openId},#{headImg},#{nickName},now(),'0','0',
+      <if test="phone !=null">
+        #{phone},
+      </if>
+      <if test="userId !=null">
+        #{userId},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

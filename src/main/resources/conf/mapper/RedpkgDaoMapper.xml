@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IRedpkgModelDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.RedpkgModel" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="zsh_open_id" property="zshOpenId" />
+    <result column="redpkg_id" property="redpkgId" />
+    <result column="redpkg_status" property="redpkgStatus" />
+    <result column="redpkg_value" property="redpkgValue" />
+    <result column="redpkg_desc" property="redpkgDesc" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,zsh_open_id,redpkg_id,redpkg_value,redpkg_desc,create_time,update_time,redpkg_status
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="id !=null">
+        and id = #{id}
+      </if>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="zshOpenId !=null">
+        and zsh_open_id = #{zshOpenId}
+      </if>
+      <if test="redpkgStatus!=null">
+        and redpkg_status=#{redpkgStatus}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryRedpkgList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.RedpkgModel" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_redpkg_record
+    <include refid="wherecause"/>
+    order by create_time desc
+  </select>
+
+  <insert id="addRedpkgRecord" parameterType="org.jumutang.giftpay.entity.RedpkgModel" >
+    insert into t_redpkg_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      open_id,zsh_open_id,redpkg_id,redpkg_value,redpkg_desc,create_time,update_time,redpkg_status
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{openId},#{zshOpenId},#{redpkgId},#{redpkgValue},#{redpkgDesc},now(),now(),#{redpkgStatus}
+    </trim>
+  </insert>
+  <update id="updateRedpkgStatus" parameterType="org.jumutang.giftpay.entity.RedpkgModel" >
+    update t_redpkg_record set redpkg_status=#{redpkgStatus},update_time=now() where id=#{id}
+  </update>
+
+</mapper>

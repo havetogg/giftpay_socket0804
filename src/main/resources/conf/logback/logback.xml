@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds" debug="false"> 
+
+	<contextName>giftpay_oilpay</contextName>
+
+<!-- linux -->
+<!-- 	<property name="logBase" value="/root/software/tomcat/logs/caranswer" /> -->
+
+<!-- windows -->
+	<property name="logBase" value="C:/giftpay_oilpay/log" />
+	<!--<property name="logBase" value="/mumu/log" />-->
+	
+	
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">  
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+			<!--<charset>UTF-8</charset>-->
+		</encoder>
+	</appender>
+	
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<append>true</append>  
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+
+		 <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		 	<fileNamePattern>${logBase}/%d{yyyy-MM-dd}_%i.log</fileNamePattern> 
+		 	<maxHistory>60</maxHistory>
+		 	<!-- 按时间回滚的同时，按文件大小来回滚 -->  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                 <maxFileSize>20MB</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>
+		 </rollingPolicy>
+	</appender>
+	
+	<appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+		<append>true</append>  
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+	        <fileNamePattern>${logBase}/%d{yyyy-MM-dd}_error_%i.log</fileNamePattern>
+	        <!-- 按时间回滚的同时，按文件大小来回滚 -->  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                 class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                 <maxFileSize>20MB</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>
+	    </rollingPolicy>  
+	    <encoder>  
+	        <pattern>%d{HH:mm:ss.SSS} %thread %X{invokeNo} %logger{40} %msg%n</pattern>
+		</encoder>
+	    <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->  
+	        <level>ERROR</level>  
+	        <onMatch>ACCEPT</onMatch>  
+	        <onMismatch>DENY</onMismatch>  
+	    </filter>  
+	</appender>
+	
+	<logger name="org.jumutang.giftpay" level="all" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+		<appender-ref ref="errorAppender" /> 
+	</logger>
+	
+</configuration>

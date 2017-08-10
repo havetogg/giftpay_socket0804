@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="js/common/shareOil.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <style>
+        #btn{
+            background: url(img/catch.png);
+            height: 210px;
+            width: 260px;
+            background-repeat: no-repeat;
+            margin: 10px auto 0;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            border:none;
+            /*animation: fadeInUp 1000ms;*/
+        }
+        #btn:active{
+            /*animation: fadeInUp 1000ms;*/
+            background-color: transparent;
+            animation-direction:alternate;
+            animation-play-state:running;
+            animation-timing-function:linear;
+        }
+        #img{
+
+        }
+        .coin_animation{
+            width: 20px;
+            animation: fadeInUp 1000ms;
+            position: absolute;
+            top: 60px;
+            opacity: 0;
+        }
+        #img :active{
+            width: 300px;
+            animation: fadeInUp 1ms;
+            background-color: transparent;
+            animation-direction:alternate;
+            animation-play-state:running;
+            animation-timing-function:linear;
+        }
+        /*硬币动画*/
+        @keyframes coins /* Safari 与 Chrome */
+        {
+            0%   {
+                transform:scale(0.8,0.8);
+                -ms-transform:scale(0.8,0.8); 	/* IE 9 */
+                -moz-transform:scale(0.8,0.8); 	/* Firefox */
+                -webkit-transform:scale(0.8,0.8); /* Safari 和 Chrome */
+                -o-transform:scale(0.8,0.8);
+            }
+            25%  {
+
+                transform:scale(0.8,0.8);
+                -ms-transform:scale(0.8,0.8); 	/* IE 9 */
+                -moz-transform:scale(0.8,0.8); 	/* Firefox */
+                -webkit-transform:scale(0.8,0.8); /* Safari 和 Chrome */
+                -o-transform:scale(0.8,0.8);
+            }
+            50%  {
+                transform:scale(0.8,0.8);
+                -ms-transform:scale(0.8,0.8); 	/* IE 9 */
+                -moz-transform:scale(0.8,0.8); 	/* Firefox */
+                -webkit-transform:scale(0.8,0.8); /* Safari 和 Chrome */
+                -o-transform:scale(0.8,0.8);
+            }
+            75%  {
+                transform:scale(0.8,0.8);
+                -ms-transform:scale(0.8,0.8); 	/* IE 9 */
+                -moz-transform:scale(0.8,0.8); 	/* Firefox */
+                -webkit-transform:scale(0.8,0.8); /* Safari 和 Chrome */
+                -o-transform:scale(0.8,0.8);
+            }
+            100% {
+                transform:scale(0.8,0.8);
+                -ms-transform:scale(0.8,0.8); 	/* IE 9 */
+                -moz-transform:scale(0.8,0.8); 	/* Firefox */
+                -webkit-transform:scale(0.8,0.8); /* Safari 和 Chrome */
+                -o-transform:scale(0.8,0.8);
+            }
+        }
+        @keyframes fadeInUp{
+            0%{opacity:0;-webkit-transform:translateY(200px);transform:translateY(200px)}
+            50%{opacity:1;-webkit-transform:translateY(100);transform:translateY(100)}
+            100%{opacity:0;-webkit-transform:translateY(0px);transform:translateY(0px)}
+        }
+        @keyframes fadeInUp{
+            0%{opacity:0;-webkit-transform:translateY(200px);transform:translateY(200px)}
+            50%{opacity:1;-webkit-transform:translateY(100);transform:translateY(100)}
+            100%{opacity:0;-webkit-transform:translateY(0px);transform:translateY(0px)}
+        }
+        .fadeInUp{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}
+        #catch{
+            background: url(img/catch_off.png);
+            height: 155px;
+            width: 155px;
+            background-repeat: no-repeat;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            animation: myfirst 1ms;
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-timing-function: linear;
+            border: none;
+            margin: 0 auto;
+        }
+        #catch :active{
+            background: url(img/catch_on.png);
+            height: 155px;
+            width: 155px;
+            background-repeat: no-repeat;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            animation: myfirst 1ms;
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-timing-function: linear;
+            border: none;
+            margin: 0 auto;
+        }
+        .catch_two{
+            background: url(img/two.png);
+            height: 155px;
+            width: 150px;
+            background-repeat: no-repeat;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            animation: myfirst 1ms;
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-timing-function: linear;
+            border: none;
+            margin: 0 auto;
+            background-position: -150px 0;
+        }
+        .catch_two_{
+            background: url(img/two.png);
+            height: 155px;
+            width: 150px;
+            background-repeat: no-repeat;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            animation: myfirst 1ms;
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+            animation-timing-function: linear;
+            border: none;
+            margin: 0 auto;
+        }
+        .two2{
+            background: url(img/two1.png);
+            height: 130px;
+            width: 150px;
+            background-repeat: no-repeat;
+            line-height: 76px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+            font-weight: bold;
+            animation: myfirst 1ms;
+            background-color: transparent;
+            animation-play-state: running;
+            animation-timing-function: linear;
+            border: none;
+            margin: 0 auto;
+            position: relative;
+        }
+        .on{
+            position: relative;
+            bottom: 5px;
+            animation: two 50ms;
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+        }
+        .off{
+            position: relative;
+            bottom: 15px;
+            /*animation: two 500ms;*/
+            background-color: transparent;
+            animation-direction: alternate;
+            animation-play-state: running;
+        }
+        @keyframes two /* Safari 与 Chrome */
+        {
+            0%{
+               bottom: 15px;
+            }
+           100%  {
+
+                bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="zoomer ">
+    <div class="content" style="width: 640px;margin: 100px auto;text-align: center;position: relative;">
+        <img class="coin_animation" id="img" src="img/coin.png" alt="">
+          <div ID="btn" onclick="btn()">
+
+          </div>
+    </div>
+    <div id="catch">
+
+    </div>
+
+    <div class="catch_two" onclick="two(this)" onmousedown="two_on()" onmouseup="two_off()">
+
+    </div>
+    <div class="two2" onclick="catchBtn(this)">
+        <img id="btn1" src="img/two2.png" alt="" class="off">
+    </div>
+</div>
+<script>
+    function catchBtn(self) {
+        $(self).find('img').attr('class','off');
+        $(self).find('img').attr('class','off on');
+        setTimeout('reset()',50);
+    }
+    function reset() {
+        $('#btn1').attr('class','off');
+    }
+    function two(self) {
+        console.log('111');
+        $(self).attr('class','catch_two_')
+    }
+    function two_on(self) {
+        console.log('on');
+        $(self).attr('class','catch_two')
+    }
+    function two_off(self) {
+        console.log('off');
+        $(self).attr('class','catch_two_')
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <script>
+        $(function () {
+            localStorage.clear();
+            $('#payNumbers').bind('input propertychange', function () {
+                var payNumbers = Number($('#payNumbers').val());
+                if (payNumbers >= 5000) {
+                    $('.catchTime').show();
+                }
+                else {
+                    $('.catchTime').hide();
+                    $("#date").val("");
+                }
+            });
+            $.ajax({
+                type: "post",
+                url: getRootPath() + "/queryUserOilBalance.htm",
+                dataType: "json",
+                success: function (data) {
+                    if (data.code == '0') {
+                        var res = JSON.parse(data.mess);
+                        $("#payNumbers").attr("placeholder", "使用已抢油滴支付(剩余油滴" + res.oilBalance + "滴)");
+                    } else {
+                        TipShow(data.mess, 1000);
+                    }
+                }
+            })
+        })
+    </script>
+</head>
+<body style="background-color: #f4f4f8 !important;" onresize="document.activeElement.scrollIntoView(true);">
+<div class="zoomer ">
+    <div class="content">
+        <div class="payMentInfo_top">
+            <img src="img/payMentTop.png" alt="">
+        </div>
+        <div class="oilSelect">
+            <ul class="flex">
+                <li class="flex-1" onclick="selectItem(this)"><a>100</a>滴</li>
+                <li class="flex-1" onclick="selectItem(this)"><a>200</a>滴</li>
+                <li class="flex-1" onclick="selectItem(this)"><a>500</a>滴</li>
+            </ul>
+            <ul class="flex">
+                <li class="flex-1" onclick="selectItem(this)"><a>1000</a>滴</li>
+                <li class="flex-1" onclick="selectItem(this)"><a>5000</a>滴</li>
+                <li class="flex-1" onclick="selectItem(this)"><a>10000</a>滴</li>
+            </ul>
+        </div>
+        <div class="oil_oilNumber">
+            <input id="payNumbers" type="number" onfocus="freeOil()" placeholder="使用已抢油滴支付">
+            <a class="oil_oilNumberText">滴</a>
+        </div>
+        <div class="oil_oilNumber">
+            <input type="text" id="shareContent" maxlength="20" placeholder="想要给抢油的小伙伴说点什么(20字)">
+        </div>
+        <div class="catchTime">
+            <label>开抢时间</label>
+            <input style="  -webkit-user-select: none;" id="date" type="text" data-options='{}' placeholder="请选择开抢时间"
+                   class="catch_TimeInput" readonly oninput="OnInput (event)" onpropertychange="OnPropChanged(event)">
+            <img src="img/little_arrow.png" alt="" class="catch_Time_arrow">
+        </div>
+        <div class="oil_paymoney">
+            <a class="yuan">￥</a>共需支付 <a class="moneyNumber">0元</a>
+        </div>
+        <div class="payMentInfo_line"></div>
+        <div class="payMentbtn">
+            <button onclick="oilBossPay()">确认支付</button>
+            <div class="payMent_bottomText">
+                完成支付即可分享到微信群，给小伙伴们瓜分
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="css/mui.dtpicker.css">
+<link rel="stylesheet" href="css/mui.min.css">
+<link rel="stylesheet" href="css/mui.picker.css">
+<script type="text/javascript" src="js/mui/mui.min.js"></script>
+<script type="text/javascript" src="js/mui/mui.picker.min.js"></script>
+<script>
+    //       日期
+    (function ($) {
+        $.init();
+        var btns = $('#date');
+        btns.each(function (i, btn) {
+            btn.addEventListener('tap', function () {
+                var optionsJson = this.getAttribute('data-options') || '{}';
+                var options = JSON.parse(optionsJson);
+                var now = new Date();
+                options.beginYear = now.getFullYear();
+                options.endYear = now.getFullYear();
+                options.beginMonth = now.getMonth() + 1;
+                options.endMonth = now.getMonth() + 1;
+                options.beginDay = now.getDate() + 1;
+                options.endDay = now.getDate() + 2;
+                options.beginHours = now.getHours() + 1;
+                var id = this.getAttribute('id');
+                var picker = new $.DtPicker(options);
+                picker.show(function (rs) {
+                    var date1 = new Date();
+                    var date2 = new Date(rs.text);
+                    console.log(date1.getTime());
+                    console.log(date2.getTime() + date1.getSeconds() * 1000);
+                    var exeTime = (date2.getTime() + date1.getSeconds() * 1000 - date1.getTime()) / 1000;
+                    console.log(exeTime);
+//                    仅限选择三天之内 3*24*60*60
+//                    if ((1 * 24 * 60 * 60) >= Math.ceil(exeTime) && Math.ceil(exeTime) >= 0) {
+                    if (isDay(rs.text)) {
+                        document.getElementById("date").value = rs.text;
+                    } else {
+                        TipShow('只能选择一天内的时间', 1000);
+                    }
+                    picker.dispose();
+                });
+            }, false);
+        });
+    })(mui);
+
+    function isDay(str) {
+        var date1 = new Date();  //开始时间
+        var date2 = getDate(str);    //结束时间
+        var date3 = date2.getTime() - date1.getTime()  //时间差的毫秒数
+
+
+//计算出相差天数
+        var days = Math.floor(date3 / (24 * 3600 * 1000))
+        if (days == 0) {
+            return true
+        } else {
+            return false;
+        }
+    }
+    function getDate(strDate) {
+        var date = eval('new Date(' + strDate.replace(/\d+(?=-[^-]+$)/,
+                        function (a) {
+                            return parseInt(a, 10) - 1;
+                        }).match(/\d+/g) + ')');
+        return date;
+    }
+</script>
+</body>
+</html>

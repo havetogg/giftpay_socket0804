@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IContentModelDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.ContentModel" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="create_time" property="createTime" />
+    <result column="head_img" property="headImg" />
+    <result column="nick_name" property="nickName" />
+    <result column="content" property="content" />
+    <result column="room_id" property="roomId" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,create_time,nick_name,head_img,content,room_id
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="id !=null">
+        and id = #{id}
+      </if>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="roomId !=null">
+        and room_id = #{roomId}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryContentList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.ContentModel" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_content
+    <include refid="wherecause"/>
+    order by create_time desc
+  </select>
+
+  <insert id="addContentModel" parameterType="org.jumutang.giftpay.entity.ContentModel" >
+    insert into t_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      open_id,create_time,head_img,nick_name,content,room_id
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{openId},now(),#{headImg},#{nickName},#{content},#{roomId}
+    </trim>
+  </insert>
+
+</mapper>

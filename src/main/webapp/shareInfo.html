@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="js/common/shareOil.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+</head>
+<script>
+    $(function(){
+        var shareContent=localStorage.getItem("shareContent");
+        $(".catchOil_ad").html(shareContent);
+        var id=getUrlParam("orderId");
+        try {
+            id = id.substring(0, id.indexOf("?"));
+        } catch (e) {
+            id=id;
+        }
+        if(id==''){
+            id=getUrlParam("orderId");
+            if(id==''){
+                TipShow('订单异常',1000);
+            }
+        }
+        $.ajax({
+            url:getRootPath()+"/getRoomInfo.htm",
+            type:"get",
+            data:{"id":id},
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                if(data.code=='1'){
+                    TipShow(data.mess,1000);
+                }else{
+                    var res=JSON.parse(data.mess);
+                    $(".share_icon").attr("src",res.headImg);
+                    $(".roomName").html(decodeURI(decodeURI(res.nickName))+"老板正在送油");
+                    $(".oilNum").html(res.oilNum);
+                }
+            }
+        });
+    })
+</script>
+<body>
+<div class="zoomer ">
+    <div class="content">
+        <div class="shareTop_bg">
+            <ul class="flex" style="padding: 20px;position: relative;">
+                <li>
+                <li>
+                    <img src="img/icon.png" alt="" class="share_icon roomImg">
+                </li>
+                <li class="share_textli">
+                    <div class="roomName">xxx老板正在送油</div>
+                    <div class=""><label class="roomPeopleNum">1</label> 位小伙伴正在瓜分</div>
+                    <input class="userOpenId" id="selfUserOpenId" type="hidden" >
+                </li>
+                </li>
+                <li>
+                    <img src="img/logo1.png" alt="" class="top_logo">
+                </li>
+            </ul>
+            <div class="shareInfo_oilNumber flex">
+                <div>
+                    <div>还剩</div>
+                    <div class="oilNumbers_limit">
+                        <a class="oilNum">90000</a>滴
+                    </div>
+                </div>
+                <div class="flex-1 catchOil_ad">
+                    位小伙伴正在瓜分位小 位小伙伴正在瓜分位小
+                </div>
+            </div>
+        </div>
+        <div class="shareInfo_box">
+            <div class="shareInfo_text">邀请朋友来瓜分</div>
+            <div class="shareInfo_subText">点击右上角分享给朋友</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

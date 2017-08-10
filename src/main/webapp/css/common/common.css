@@ -1,0 +1,465 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+
+
+
+
+/*��Ҷ��Ч*/
+
+.Effects {
+    /*background: rgba(0, 0, 0, 0.37);*/
+    width: 640px;
+    height: 508px;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
+.Effects i {
+    position: absolute;
+    width: 60px;
+    z-index: 100;
+}
+.Effects i img {
+    width: 100%;
+}
+.Effects2 {
+    /*background: rgba(0, 0, 0, 0.37);*/
+    width: 640px;
+    height: 508px;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
+.Effects2 i {
+    position: absolute;
+    width: 60px;
+}
+.Effects2 i img {
+    width: 100%;
+}
+/*��Ҷ��Ч*/
+
+
+
+
+
+
+
+
+.xieYi{
+    color: #666;
+}
+.input{
+    background: white;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+
+.f_18{
+    font-size: 18px;
+}
+
+.f_19{
+    font-size: 19px;
+}
+
+/*noinspection LossyEncoding*/
+.f_20{
+    font-size: 20px;
+}
+
+.f_21{
+    font-size:21px;
+}
+.f_22{
+    font-size: 22px;
+}
+
+.f_23{
+    font-size: 23px;
+}
+.f_24{
+    font-size: 24px;
+}
+.f_25{
+    font-size: 25px;
+}
+.f_26{
+    font-size: 26px;
+}
+.f_27{
+    font-size: 27px;
+}
+.f_28{
+    font-size: 28px;
+}
+.f_29{
+    font-size: 29px;
+}
+.f_30{
+    font-size: 30px;
+}
+.f_31{
+    font-size:31px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+body, p, span {
+    font-size: 12px;
+    line-height: 24px;
+    font-family:"Arial", "Microsoft Yahei" ;
+    font-weight: normal;
+    color: #000;
+}
+
+/*a {*/
+    /*text-decoration: none;*/
+    /*font-size: 12px;*/
+    /*line-height: 24px;*/
+    /*font-weight: normal;*/
+    /*font-family:"Arial", "Microsoft Yahei" ;*/
+    /*color: #000;*/
+/*}*/
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img, abbr, acronym {
+    border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+li {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a, img, button, input, textarea {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+/*********  css reset end  ***********/
+
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
+.clearF {
+    clear: both;
+}
+
+.textC {
+    text-align: center;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative-ele {
+    position: relative;
+}
+
+.block-ele {
+    display: block;
+}
+
+.inline-ele {
+    display: inline;
+}
+
+.hide-ele {
+    display: none;
+}
+
+.center-ele {
+    margin: 0 auto;
+}
+
+#loading{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99999999;
+    zoom: 1;
+}
+
+#loading_bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#loading_div {
+    width: 128px;
+    height: 128px;
+    position: absolute;
+    margin-left: -64px;
+    margin-top: -64px;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 16px;
+}
+
+#loading_pic {
+    margin: 32px;
+    background-image: url(../../img/common/loading.gif);
+    background-size: 64px 64px;
+    width: 64px;
+    height: 64px;
+}
+
+#loading_div span {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-shadow: 0 1px 0 #FFF;
+}
+
+#alerw {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+}
+
+#alerw_bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    opacity: 0.6;
+}
+
+#alerw_div {
+    width: 476px;
+    min-height: 184px;
+    position: absolute;
+    margin-left: -270px;
+    margin-top: -248px;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    z-index: 100000;
+    background: #e4e4e4;
+    border-radius: 12px;
+    padding: 32px;
+}
+
+#alerw_div .title {
+    /*font-weight: bold;*/
+    /*height: 56px;*/
+    line-height: 45px;
+    font-size: 36px;
+    color: #000;
+    width: 440px;
+    margin: 15px auto 65px;
+}
+
+
+#alerw_div .content {
+    font-size: 28px;
+    line-height: 38px;
+    color: #000;
+    min-height: 38px;
+}
+
+#alerw_div .ab {
+    padding: 24px;
+    text-align: center;
+    color: #06f;
+    height: 42px;
+    text-decoration: none;
+    line-height: 42px;
+    font-size: 32px;
+    border-top: 1px solid #b3b3b3;
+    display: block;
+    margin: -32px;
+    margin-top: 32px;
+}
+
+#alerw_div .ab.ab_one {
+}
+
+#alerw_div .ab.ab_two {
+    width: 222px;
+    float: left;
+}
+
+#alerw_div .ab.ab_ok {
+    font-weight: bold;
+}
+
+#alerw_div .ab.ab_ok.ab_two {
+    margin-left: -1px;
+    border-left: 1px solid #b3b3b3;
+}
+
+#alerw_div .ab.ab_c.ab_two {
+    margin-right: 0;
+}
+
+#alerw_div .ab:hover {
+    background-color: #d9d9d9;
+}
+
+.hide {
+    display: none;
+}
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+}
+
+.screenalert {
+    z-index: 9999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.screenalert .mask {
+    background-color: #3c3c3c;
+}
+
+.info {
+    text-align: center;
+    font-size: 36px;
+    color: #999;
+    text-shadow: 0 -2px 0 #000000;
+    margin-top: 100px;
+}
+
+.zoomer {
+    /*background: #f2f2f2;*/
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+}
+
+.wrap {
+    background: #2e3132;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    z-index: 0;
+}
+
+.mp3controller{
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 20px;
+    background: url(../../img/common/ico_sound_on.png) no-repeat;
+    background-size: contain;
+}
+
+.mp3controller.pause{
+    background: url(../../img/common/ico_sound_off.png) no-repeat;
+    background-size: contain;
+}
+
+.container{
+    width: 1000px;
+    border: 1px solid red;
+    margin: 50px auto 0;
+    position: relative;
+}
+.container img{
+    position: absolute;
+}
+.loading{
+    width: 100%;
+    height: 60px;
+    background: url(../img/loading.gif) no-repeat center #FFF;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+
+.red{
+    color:red;
+}
+._loading_{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2e3231 ;
+    z-index: 1000;
+    opacity: 1;
+}
+/*********  some tool classes end  ***********/

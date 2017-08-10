@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.jumutang.giftpay.dao.PayInfoDaoI">
+
+	<resultMap type="org.jumutang.giftpay.entity.PayInfoModel" id="baseResult">
+		<result column="deal_id" property="dealId" />
+		<result column="account_id" property="accountId" />
+		<result column="order_no" property="orderNo" />
+		<result column="business_info" property="businessInfo" />
+		<result column="deal_info" property="dealInfo" />
+		<result column="deal_money" property="dealMoney" />
+		<result column="deal_realMoney" property="dealRealMoney" />
+		<result column="deal_time" property="dealTime" />
+		<result column="deal_type" property="dealType" />
+		<result column="deal_state" property="dealState"/>
+		<result column="deal_remark" property="dealRemark"/>
+		<result column="wx_order" property="wxOrder"/>
+		<result column="phone" property="phone"/>
+		<result column="of_order" property="ofOrder"/>
+	</resultMap>
+
+
+	<!-- 查询交易记录 -->
+	<select id="queryPayInfos" parameterType="org.jumutang.giftpay.entity.PayInfoModel" resultMap="baseResult">
+		select	deal_id,of_order,account_id,order_no,business_info,deal_info,deal_money,deal_realMoney,deal_time,deal_type,deal_state,deal_remark,wx_order
+		from t_payInfo
+		<where>
+			<if test="accountId !=null">
+				and account_id = #{accountId}
+			</if>
+			<if test="orderNo !=null">
+				and order_no = #{orderNo}
+			</if>
+			<if test="businessInfo !=null">
+				and business_info = #{businessInfo}
+			</if>
+			<if test="ofOrder !=null">
+				and of_order = #{ofOrder}
+			</if>
+
+		</where>
+		order by deal_time desc
+	</select>
+
+	<!-- 生成交易记录 -->
+	<insert id="insertPayInfo" parameterType="org.jumutang.giftpay.entity.PayInfoModel">
+		insert into t_payInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			of_order,deal_id,account_id,order_no,deal_money,deal_time,deal_type,deal_state,deal_realMoney,
+			<if test="dealInfo !=null">
+				deal_info,
+			</if>
+			<if test="dealRemark !=null">
+				deal_remark,
+			</if>
+			<if test="businessInfo !=null">
+				business_info,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			'',#{dealId},#{accountId},#{orderNo},#{dealMoney},#{dealTime},#{dealType},#{dealState},#{dealRealMoney},
+			<if test="dealInfo !=null">
+				#{dealInfo},
+			</if>
+			<if test="dealRemark !=null">
+				#{dealRemark},
+			</if>
+			<if test="businessInfo !=null">
+				#{businessInfo},
+			</if>
+		</trim>
+	</insert>
+
+
+	<!-- 更新交易状态 -->
+	<update id="updatePayInfo" parameterType="org.jumutang.giftpay.entity.PayInfoModel">
+		update t_payInfo
+		<set>
+			<if test="wxOrder !=null ">
+				wx_order = #{wxOrder},
+			</if>
+			<if test="ofOrder !=null ">
+				of_order = #{ofOrder},
+			</if>
+			<if test="dealState !=null">
+				deal_state = #{dealState},
+			</if>
+			<if test="dealInfo !=null">
+				deal_info = #{dealInfo},
+			</if>
+			<if test="dealRemark !=null">
+				deal_remark = #{dealRemark},
+			</if>
+		</set>
+		<where>
+			<if test="orderNo !=null">
+				and order_no = #{orderNo}
+			</if>
+
+		</where>
+	</update>
+
+
+</mapper>

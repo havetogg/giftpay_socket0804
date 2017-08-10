@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
+    <script type="text/javascript" src="js/catchOil.js?d="+new Date().getTime()></script>
+    <script type="text/javascript" src="js/index.js?d="+new Date().getTime()></script>
+    <script type="text/javascript" src="js/common/jWeChat-1.0.0.js"></script>
+    <script type="text/javascript" src="js/common/shareOilByCatch.js"></script>
+    <script>
+        $(function () {
+            document.body.addEventListener('touchstart', function () {
+            })
+            // setTimeout()
+        });
+        function toExchange() {
+            window.location.href="./exchangeOilRed.html";
+        }
+        //            $(function () {
+        //                leaveOff();
+        //            })
+        //            setTimeout('leaveOff()',2000)
+        function leaveOff() {
+            $('#tipMessage_div').attr('class','Tip_Messages_active_leave');
+        }
+        function catchBtn(self) {
+            //               $(self).find('img').attr('class','off');
+//               $(self).find('img').attr('class','off on');
+//               setTimeout('reset()',60);
+            $("#btn1").animate({bottom:'10px'},20);
+            $("#btn1").animate({bottom:'15px'},20);
+        }
+        function reset() {
+            $('#btn1').attr('class','off');
+        }
+    </script>
+</head>
+
+<body>
+<!--消息弹框-->
+<div id="tipMessage">
+    <div id="tipMessage_div" class="Tip_Messages_active" onclick="set1()">
+        <div style="position: relative;top: 5px;">
+            <img src="img/icon.png" alt="" class="person_title">
+            <img src="img/newMessage.png" alt="" class="person_title_">
+        </div>
+        <div class="contents">
+            留言文字留言文字留尽快尽
+        </div>
+    </div>
+</div>
+<div class="zoomer" onload="init()">
+    <!-- 开场动画 -->
+    <div class="catch_block">
+
+        <div class="block_catchBtn" onclick="block_catch()">
+            <div>
+                <img src="img/finger.png" alt="" class="finger">
+            </div>
+            <!--金币-->
+            <div id="block_coin">
+
+            </div>
+        </div>
+        <div class="block_bottom_text">
+            <div>连击按钮进行抢油</div>
+            <div>手速越快，抢的越多哟</div>
+        </div>
+        <div class="block_checkbox">
+            <input id="check" checked type="checkbox"><label>我是老司机，不再显示</label>
+        </div>
+        <div>
+            <img src="img/block_btn.png" alt="" class="block_btn" onclick="close_block()">
+        </div>
+    </div>
+    <div class="content">
+        <div class="shareTop_bg">
+            <ul class="flex" style="padding: 20px;position: relative;">
+                <li>
+                <li>
+                    <img src="img/icon.png" alt="" class="share_icon roomImg">
+                </li>
+                <li class="share_textli">
+                    <div class="roomName"></div>
+                    <div class=""><label class="roomPeopleNum">1</label> 位小伙伴正在瓜分</div>
+                    <input class="userOpenId" id="selfUserOpenId" type="hidden" >
+                    <input class="userRate" id="selfUserRate" type="hidden" >
+                </li>
+                </li>
+                <li>
+                    <img src="img/logo1.png" alt="" class="top_logo">
+                </li>
+            </ul>
+            <div class="shareInfo_oilNumber flex">
+                <div>
+                    <div>还剩</div>
+                    <div class="oilNumbers_limit">
+                        <a class="oilNum">0</a>滴
+                    </div>
+                </div>
+                <div class="flex-1 catchOil_ad">
+                </div>
+            </div>
+        </div>
+        <div class="catch_number">
+            <a>已抢到</a>
+            <a class="nowOilNum">0</a>
+            <a>滴</a>
+        </div>
+        <div class="catch_btn" onclick="catchOil()">
+            <div class="catch_out_time">倒计时 <a id="a1">0</a><a id="a2">0</a>:<a id="a3">0</a><a id="a4">0</a>:<a id="a5">0</a><a id="a6">0</a> 开抢</div>
+            <div id="catch" style="">
+            </div>
+            <div class="two2" onclick="catchBtn(this)">
+                <img id="btn1" src="img/two2.png" alt="" class="off">
+            </div>
+            <div id="catch_out" style="display: none">
+            </div>
+            <div id="coin_animation"></div>
+            <div id="coin_big_animation"></div>
+        </div>
+        <div id="coin_audio">
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+            <audio  src="audio/coin.mp3" ></audio>
+        </div>
+        <div id="big_coin_audio">
+            <audio  src="audio/big_coin.mp3" ></audio>
+            <audio  src="audio/big_coin.mp3" ></audio>
+            <audio  src="audio/big_coin.mp3" ></audio>
+            <audio  src="audio/big_coin.mp3" ></audio>
+        </div>
+        <div class="catch_box">
+            <img class="catch_icon" src="" alt="">
+            <a class="rank"></a>
+            <div class="flex flex-direction-column">
+                <a class="catch_name_self"></a>
+                <a class="catch_name_self_ex" onclick="toExchange()">去兑换</a>
+                <input id="allCountOilNum" type="hidden">
+            </div>
+            <a class="catch_oil"><label class="demoOil">0</label>滴</a>
+        </div>
+        <div class="catchOil_adText">活动结果以官方最终数据为准</div>
+        <ul class="catchList_ul">
+
+        </ul>
+        <div class="leaveMessageDiv" style="padding: 10px 30px;">
+            <input class="flex-1 contentInput" type="text" placeholder="你有什么想对M2U说的吗？"><a class="saying">留言</a>
+        </div>
+        <ul class="messageList_ul">
+        </ul>
+        <a class="catchOil_ruleText" href="./rule.html">规则说明</a>
+        <input type="hidden" onclick="toEnd()" id="demoEnd">
+    </div>
+</div>
+</body>
+</html>

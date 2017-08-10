@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.jumutang.giftpay.dao.IRoomRecordDao" >
+  <resultMap id="BaseResultMap" type="org.jumutang.giftpay.entity.RoomRecord" >
+    <id column="id" property="id" />
+    <result column="open_id" property="openId" />
+    <result column="oil_num" property="oilNum" />
+    <result column="create_time" property="createTime" />
+    <result column="head_img" property="headImg" />
+    <result column="nick_name" property="nickName" />
+    <result column="status" property="status" />
+    <result column="share_content" property="shareContent" />
+    <result column="is_timing" property="isTiming" />
+    <result column="timing_time" property="timingTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,open_id,oil_num,create_time,nick_name,head_img,status,share_content,is_timing,timing_time
+  </sql>
+
+  <sql id="wherecause">
+    <where>
+      <if test="id !=null">
+        and id = #{id}
+      </if>
+      <if test="openId !=null">
+        and open_id = #{openId}
+      </if>
+      <if test="status !=null">
+        and status = #{status}
+      </if>
+    </where>
+  </sql>
+
+  <select id="queryRoomRecordList" resultMap="BaseResultMap" parameterType="org.jumutang.giftpay.entity.RoomRecord" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_room_record
+    <include refid="wherecause"/>
+    order by create_time desc
+  </select>
+
+  <insert id="addRoomRecord" parameterType="org.jumutang.giftpay.entity.RoomRecord" >
+    insert into t_room_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,open_id,oil_num,create_time,head_img,nick_name,status,share_content,is_timing,timing_time
+    </trim>
+    <trim prefix="values(" suffix=")" suffixOverrides=",">
+      #{id},#{openId},#{oilNum},now(),#{headImg},#{nickName},'0',#{shareContent},#{isTiming},#{timingTime}
+    </trim>
+  </insert>
+
+<update id="updateRoomRecord"  parameterType="org.jumutang.giftpay.entity.RoomRecord" >
+  update t_room_record set status=#{status} where id=#{id}
+</update>
+
+</mapper>

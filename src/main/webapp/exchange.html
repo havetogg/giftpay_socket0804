@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5, width=640, target-densitydpi=device-dpi">
+    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="oil.ico">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>油礼付</title>
+    <link type="text/css" href="css/common/common.css" rel="stylesheet">
+    <link type="text/css" href="css/app.css" rel="stylesheet">
+    <link type="text/css" href="css/animate.min.css" rel="stylesheet">
+    <script type="text/javascript" src="js/common/jQuery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
+    <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+</head>
+<script>
+    $(function(){
+        var goodsNum=getUrlParam("goodsNum");
+        var goodsName=getUrlParam("goodsName");
+        var goodsPrice=getUrlParam("goodsPrice");
+        var goodsTime=getUrlParam("goodsTime");
+        $(".goodsTime").html(goodsTime);
+        $(".goodsName").html(goodsName);
+        $(".goodsPrice").html(goodsPrice+"滴");
+        $(".goodsNum").html(goodsNum+"张");
+    })
+</script>
+<body>
+<div class="zoomer " style="background-color: #f4f4f8 !important;">
+    <div class="content">
+        <div class="exchangeTop_bg">
+            <div class="exchange_return"onclick="returnBack()">
+                回到首页
+            </div>
+            <ul class="exchange_details">
+                <li><label>产品名称：</label><label class="goodsName"></label></li>
+                <li><label>兑换数量：</label><label class="goodsNum"></label></li>
+                <li><label>兑换价格：</label><label class="goodsPrice" style="color:#ff4200"></label></li>
+                <li><label>兑换时间：</label><label class="goodsTime"></label></li>
+            </ul>
+            <div class="exchange_bottom_Text">
+                <div>兑换成功后，在中石化加油时，用微信扫描加油站工作人员佩戴的二维码进行线上支付，即可使用红包抵扣消费金额。</div>
+                <div>您也可以在中石化油卡在线充值 <a class="clickMe" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf7f4251c27f80ac8&redirect_uri=http%3A%2F%2Fsgs-wx.jspec.cn%2Fwxweb%2FnewWXRecharge&response_type=code&scope=snsapi_base&state=1#wechat_redirect">点我充值</a>、易捷微商城等场景消费时选择使用红包。</div>
+            </div>
+
+            <ul class="exchange_code">
+                <li>
+                    <img src="img/erCode.png" alt="">
+                </li>
+                <li>
+                    <div>长按二维码查询加油红包</div>
+                    <div>并随时查看最新车主优惠活动</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
