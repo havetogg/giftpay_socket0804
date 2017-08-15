@@ -29,6 +29,7 @@ public interface PayInfoDaoI {
 	 */
 	public int insertPayInfo(PayInfoModel payInfoModel);
 
+	public int queryPayInfoSum(PayInfoModel payInfoModel);
 
 
 }

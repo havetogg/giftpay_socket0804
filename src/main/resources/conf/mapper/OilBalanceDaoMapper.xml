@@ -35,6 +35,11 @@
         <include refid="wherecause"/>
         order by create_time desc
     </select>
+    <select id="queryOilBalanceSum" resultType="java.lang.Integer" parameterType="org.jumutang.giftpay.entity.OilBalanceModel">
+        select
+        sum(oil_balance)
+        from oil_balance
+    </select>
 
     <insert id="addOilBalanceModel" parameterType="org.jumutang.giftpay.entity.OilBalanceModel">
         insert into oil_balance

@@ -18,6 +18,32 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/common/jWeChat-Adaptive.js"></script>
     <script type="text/javascript" src="js/common/m.tool.juxinbox.com.js"></script>
+    <style>
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            background: #fff url(img/checkbox1_off.png);
+            width: 70px;
+            height: 36px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            outline: none;
+            cursor: pointer;
+            vertical-align: text-bottom;
+            margin: 0 10px;
+        }
+        input[type="checkbox"]:checked {
+            -webkit-appearance: none;
+            background: #fff url(img/checkbox1_on.png);
+            width: 70px;
+            height: 36px;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            outline: none;
+            cursor: pointer;
+            vertical-align: text-bottom;
+            margin: 0 10px;
+        }
+    </style>
     <script>
         $(function () {
             localStorage.clear();
@@ -77,6 +103,11 @@
             <input style="  -webkit-user-select: none;" id="date" type="text" data-options='{}' placeholder="请选择开抢时间"
                    class="catch_TimeInput" readonly oninput="OnInput (event)" onpropertychange="OnPropChanged(event)">
             <img src="img/little_arrow.png" alt="" class="catch_Time_arrow">
+        </div>
+        <div class="payMentInfo_line2"></div>
+        <div class="catchTime">
+            <label>是否公开</label>
+            <input style="-webkit-user-select: none;" id="" type="checkbox" checked class="catch_TimeInput1">
         </div>
         <div class="oil_paymoney">
             <a class="yuan">￥</a>共需支付 <a class="moneyNumber">0元</a>

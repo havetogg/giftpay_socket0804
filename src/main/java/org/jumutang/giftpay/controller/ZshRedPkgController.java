@@ -106,7 +106,7 @@ public class ZshRedPkgController {
             codeMess = new CodeMess("10000", "验证通过");
             model.setPhone(mobile);
             this.userModelService.updateUserPhone(model);
-            session.setAttribute("userModel", model);
+            session.setAttribute(OilContant.SESSION_USERMODEL, obj);
             return JSONObject.toJSONString(codeMess);
         }
     }
@@ -181,7 +181,6 @@ public class ZshRedPkgController {
         updateParams.put("phone", model.getPhone());
         updateParams.put("state", "1");
         updateParams.put("reState", "4");
-
         logger.error("添加红包参数:" + JSONObject.toJSONString(params));
 //        for(int i=0;i<cardNum;i++){
         result = HttpUtil.sendPost(ADDREDPKG, HttpUtil.UTF8, params);

@@ -42,6 +42,9 @@
 		</where>
 		order by deal_time desc
 	</select>
+	<select id="queryPayInfoSum" parameterType="org.jumutang.giftpay.entity.PayInfoModel" resultType="java.lang.Integer">
+		select SUM(deal_money) from t_payinfo where deal_state='1'
+	</select>
 
 	<!-- 生成交易记录 -->
 	<insert id="insertPayInfo" parameterType="org.jumutang.giftpay.entity.PayInfoModel">

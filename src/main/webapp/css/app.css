@@ -171,7 +171,7 @@ body {
     left: 0;
     right: 0;
     text-align: center;
-    bottom: 230px;
+    bottom: 180px;
     font-size: 28px;
     color: #fff;
 }
@@ -181,7 +181,7 @@ body {
 .index_logo{
     text-align: center;
     position: absolute;
-    bottom: 30px;
+    bottom: 20px;
     left: 0;
     right: 0;
 }
@@ -190,13 +190,13 @@ body {
     right: 0;
     left: 0;
     text-align: center;
-    bottom: 110px;
+    bottom: 80px;
     font-size: 26px;
     color: #fff;
 }
 .index_btns label{
     background: rgba(255,255,255,.2);
-    padding: 0px 15px;
+    padding: 5px 25px;
     border-radius: 2px;
     line-height: 45px;
     height: 45px;
@@ -225,6 +225,29 @@ body {
     left: 0;
     right: 0;
     top: 580px;
+    font-size: 26px;
+}
+.boss_sendOil{
+    background-color: rgba(255,255,255,0.2);
+    width: 300px;
+    padding: 20px 40px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    bottom: 250px;
+    font-size: 28px;
+    color: #fff;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+}
+.boss_sendOil a{
+    font-size: 38px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+.sendingOil{
     font-size: 26px;
 }
 /*分享页面*/
@@ -1352,6 +1375,19 @@ input[type="checkbox"]:checked {
     right: 40px;
     width: 72%;
 }
+.catch_TimeInput1{
+    border: none;
+    font-size: 26px;
+    text-align: right;
+    position: absolute;
+    right: 5px;
+    width: 72%;
+}
+.payMentInfo_line2{
+    height: 1px;
+    background-color: #e7e7e7;
+    margin: 0 30px;
+}
 .catch_Time_arrow{
     position: absolute;
     right: 15px;
@@ -1559,6 +1595,14 @@ input[type="checkbox"]:checked {
     font-size: 20px;
     display: inherit;
 }
+.catchOil_ruleText1{
+    height: 40px;
+    line-height: 40px;
+    color: #218ded;
+    text-align: center;
+    font-size: 20px;
+    display: inherit;
+}
 @-webkit-keyframes bounceOutLeft{0%{-webkit-transform:translateX(0);transform:translateX(0)}20%{opacity:1;-webkit-transform:translateX(20px);transform:translateX(20px)}100%{opacity:0;-webkit-transform:translateX(-2000px);transform:translateX(-2000px)}}@keyframes bounceOutLeft{0%{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}20%{opacity:1;-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}100%{opacity:0;-webkit-transform:translateX(-2000px);-ms-transform:translateX(-2000px);transform:translateX(-2000px)}}.bounceOutLeft{-webkit-animation-name:bounceOutLeft;animation-name:bounceOutLeft}
 @-webkit-keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translateX(-20px);transform:translateX(-20px)}100%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}@keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translateX(-20px);-ms-transform:translateX(-20px);transform:translateX(-20px)}100%{opacity:1;-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}}.fadeInLeft{-webkit-animation-name:fadeInLeft;animation-name:fadeInLeft}
 @-webkit-keyframes bounceInLeft{0%{opacity:0;-webkit-transform:translateX(-2000px);transform:translateX(-2000px)}60%{opacity:1;-webkit-transform:translateX(30px);transform:translateX(30px)}80%{-webkit-transform:translateX(-10px);transform:translateX(-10px)}100%{-webkit-transform:translateX(0);transform:translateX(0)}}@keyframes bounceInLeft{0%{opacity:0;-webkit-transform:translateX(-2000px);-ms-transform:translateX(-2000px);transform:translateX(-2000px)}60%{opacity:1;-webkit-transform:translateX(30px);-ms-transform:translateX(30px);transform:translateX(30px)}80%{-webkit-transform:translateX(-10px);-ms-transform:translateX(-10px);transform:translateX(-10px)}100%{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}}.bounceInLeft{-webkit-animation-name:bounceInLeft;animation-name:bounceInLeft}
@@ -1628,4 +1672,66 @@ input[type="checkbox"]:checked {
 .iconsss{
     border-radius: 50%;
     width: 68px;
+}
+.oilRooms{
+    background-color: #fff;
+    margin: 30px;
+}
+.oilRooms_left{
+    width: 200px;
+    height: 200px;
+    background: -webkit-linear-gradient(#ff5d2f, #ea864c); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#ff5d2f, #ea864c); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#ff5d2f, #ea864c); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#ff5d2f, #ea864c); /* 标准的语法（必须放在最后） */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 24px;
+    color: #fff;
+    line-height: 35px;
+}
+.oilRooms_left img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.oilRooms_left_name{
+    width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 35px;
+    line-height: 40px;
+}
+.oilRooms_left_time{
+    font-size: 20px;
+}
+.oilRooms_right{
+    padding: 30px 20px;
+    font-size: 20px;
+    color: #888888;
+}
+.oilRooms_right_number{
+    font-size: 36px;
+    color: #000000;
+    font-weight: bold;
+}
+.oilRooms_right_context{
+    margin: 20px 0;
+    max-height: 70px;
+    overflow: hidden;
+}
+.oilRooms_right a{
+    color: #fe5f31;
+}
+.oilRooms_right_btn{
+    line-height: 38px;
+    height: 38px;
+}
+.oilRooms_right_btn img{
+    float: right;
+}
+.oilRooms li{
+    margin-bottom: 20px;
 }

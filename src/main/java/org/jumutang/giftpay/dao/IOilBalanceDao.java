@@ -11,4 +11,5 @@ public interface IOilBalanceDao {
     List<OilBalanceModel> queryOilBalanceList(OilBalanceModel oilBalanceModel);
     int addOilBalanceModel(OilBalanceModel oilBalanceModel);
     int updateOilBalanceModel(OilBalanceModel oilBalanceModel);
+    int queryOilBalanceSum(OilBalanceModel oilBalanceModel);
 }

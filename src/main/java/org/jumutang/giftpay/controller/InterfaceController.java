@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import org.jumutang.giftpay.common.constant.NumConstant;
 import org.jumutang.giftpay.entity.CodeMess;
 import org.jumutang.giftpay.entity.OilBalanceModel;
+import org.jumutang.giftpay.entity.PayInfoModel;
 import org.jumutang.giftpay.entity.UserModel;
 import org.jumutang.giftpay.service.OilBalanceService;
+import org.jumutang.giftpay.service.PayInfoService;
 import org.jumutang.giftpay.service.UserModelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,8 @@ public class InterfaceController {
     private OilBalanceService oilBalanceService;
     @Autowired
     private UserModelService userModelService;
+    @Autowired
+    private PayInfoService payInfoService;
 
     private static final String REQUEST_GET = "GET";
     private static final String REQUEST_POST = "POST";
@@ -83,15 +87,6 @@ public class InterfaceController {
                 return JSONObject.toJSONString(codeMess);
             }
             String openId = map.get(REQUEST_PARAM_OPENID).toString();
-       /* UserModel userModel=new UserModel();
-        userModel.setOpenId(openId);
-        //查询是否存在该用户
-        List<UserModel> userList=this.userModelService.queryUserModelList(userModel);
-        if(userList.size()==0){
-            //不存在用户表
-
-        }
-*/
             OilBalanceModel userBalance = new OilBalanceModel();
             userBalance.setOpenId(openId);
             List<OilBalanceModel> balanceList = this.oilBalanceService.queryOilBalanceList(userBalance);
@@ -109,6 +104,24 @@ public class InterfaceController {
                 return JSONObject.toJSONString(codeMess);
             }
         }
+    }
+
+
+    /**
+     * 油礼付用户油滴账户统计
+     */
+    @RequestMapping(value = "/oilUserStatistics", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public String oilUserStatistics(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        Integer oilSum=this.oilBalanceService.queryOilBalanceSum(new OilBalanceModel());
+        Integer userSum=this.userModelService.queryUserCount(new UserModel());
+        Integer paySum=this.payInfoService.queryPayInfoSum(new PayInfoModel());
+        JSONObject object=new JSONObject();
+        //总油滴 总人数 总充值
+        object.put("oilSum",oilSum);
+        object.put("userSum",userSum);
+        object.put("paySum",paySum);
+        return object.toJSONString();
     }
 
 

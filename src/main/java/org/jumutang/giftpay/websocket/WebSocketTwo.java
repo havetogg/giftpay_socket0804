@@ -153,27 +153,53 @@ public class WebSocketTwo {
             jsonObject.put("oilNum", String.valueOf(redisOilNum));
             jsonObject.put("clickNum", oilNum);
             returnStr = JSON.toJSONString(jsonObject);
+            for (WebSocketTwo item : concurrentHashMap.get(roomId)) {
+                try {
+                    synchronized (item) {
+                        if (item.session.isOpen() || "true".equals(item.session.isOpen())) {
+                            item.session.getBasicRemote().setBatchingAllowed(false);
+                            item.session.getBasicRemote().flushBatch();
+                            item.session.getBasicRemote().sendText(returnStr);
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.error("ONOPEN异常:" + e.toString());
+                    webSocketSet.remove(this);  //从set中删除
+                    concurrentHashMap.get(roomId).remove(this);
+                    try {
+                        item.session.close();
+                    } catch (IOException e1) {
+                        logger.error("ONOPEN的ItemSession关闭异常:" + e1.toString());
+                    } finally {
+                        continue;
+                    }
+                } finally {
+                    continue;
+                }
+            }
         } else if (msgType.equals("content")) {
             jsonObject.put("name", "content");
             jsonObject.put("content", obj.getString("content"));
             returnStr = JSON.toJSONString(jsonObject);
-        }
-        for (WebSocketTwo item : concurrentHashMap.get(roomId)) {
-            try {
-//                synchronized (item) {
-                if(item.session.isOpen()){
-                    item.session.getBasicRemote().sendText(returnStr);
-                }
-//                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                webSocketSet.remove(this);  //从set中删除
-                concurrentHashMap.get(roomId).remove(this);
+            for (WebSocketTwo item : concurrentHashMap.get(roomId)) {
                 try {
-                    item.session.close();
-                } catch (IOException e1) {
+//                synchronized (item) {
+                    if(item.session.isOpen()){
+                        item.session.getBasicRemote().setBatchingAllowed(false);
+                        item.session.getBasicRemote().flushBatch();
+                        item.session.getBasicRemote().sendText(returnStr);
+                    }
+//                }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    webSocketSet.remove(this);  //从set中删除
+                    concurrentHashMap.get(roomId).remove(this);
+                    try {
+                        item.session.close();
+                    } catch (IOException e1) {
+                    }
+                    continue;
                 }
-                continue;
             }
         }
     }

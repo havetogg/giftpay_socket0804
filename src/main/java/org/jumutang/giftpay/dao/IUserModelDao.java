@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface IUserModelDao {
     List<UserModel> queryUserModelList(UserModel userModel);
+    int queryUserCount(UserModel userModel);
     int addUserModel(UserModel userModel);
     int updateUserPhone(UserModel userModel);
     int updateUserInitStatus(UserModel userModel);

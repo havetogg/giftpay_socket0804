@@ -14,13 +14,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     vertical-align: baseline;
     background: transparent;
 }
-
-
-
-
-
-/*��Ҷ��Ч*/
-
 .Effects {
     /*background: rgba(0, 0, 0, 0.37);*/
     width: 640px;
@@ -121,18 +114,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 .f_31{
     font-size:31px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 body, p, span {
     font-size: 12px;
     line-height: 24px;
@@ -140,21 +121,10 @@ body, p, span {
     font-weight: normal;
     color: #000;
 }
-
-/*a {*/
-    /*text-decoration: none;*/
-    /*font-size: 12px;*/
-    /*line-height: 24px;*/
-    /*font-weight: normal;*/
-    /*font-family:"Arial", "Microsoft Yahei" ;*/
-    /*color: #000;*/
-/*}*/
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
 fieldset, img, abbr, acronym {
     border: 0;
 }
@@ -182,7 +152,6 @@ a, img, button, input, textarea {
 }
 
 /*********  css reset end  ***********/
-
 .floatL {
     float: left;
 }
@@ -194,7 +163,6 @@ a, img, button, input, textarea {
 .clearF {
     clear: both;
 }
-
 .textC {
     text-align: center;
 }

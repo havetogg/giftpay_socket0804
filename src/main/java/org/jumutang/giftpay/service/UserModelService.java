@@ -19,6 +19,9 @@ public class UserModelService {
     public List<UserModel> queryUserModelList(UserModel userModel){
         return this.userModelDao.queryUserModelList(userModel);
     }
+    public int queryUserCount(UserModel userModel){
+        return this.userModelDao.queryUserCount(userModel);
+    }
     public int addUserModel(UserModel userModel){
         return this.userModelDao.addUserModel(userModel);
     }

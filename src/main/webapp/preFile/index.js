@@ -64,7 +64,6 @@ var selectItem = function (self) {
     }
 }
 function oilBossPay() {
-    var isOpen= $("input[type='checkbox']").is(':checked');
     var date = $("#date").val();
     var isTiming = '';
     var timingTime = '';
@@ -185,7 +184,7 @@ function catchOil() {
     //播放动画
     var html = "<img id=\"coin\" src=\"img/coin.png\" class=\"coin_animation\" alt=\"\">";
     var coins = $('#coin_animation').find('img').length;
-    if (coins < 10) {
+    if (coins < 20) {
         $('#coin_animation').append(html);
     }
     else {

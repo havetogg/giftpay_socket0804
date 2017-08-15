@@ -26,4 +26,8 @@ public class OilBalanceService {
         return this.oilBalanceDao.updateOilBalanceModel(oilBalanceModel);
     }
 
+    public int queryOilBalanceSum(OilBalanceModel oilBalanceModel){
+        return this.oilBalanceDao.queryOilBalanceSum(oilBalanceModel);
+    }
+
 }

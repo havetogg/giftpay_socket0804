@@ -65,4 +65,8 @@ public class PayInfoService{
 		return payInfoDaoI.insertPayInfo(payInfoModel);
 	}
 
+	public int queryPayInfoSum(PayInfoModel payInfoModel){
+		return this.payInfoDaoI.queryPayInfoSum(payInfoModel);
+	}
+
 }
